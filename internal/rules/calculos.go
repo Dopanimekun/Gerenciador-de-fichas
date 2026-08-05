@@ -4,21 +4,20 @@ import (
 	"github.com/Dopanimekun/Gerenciador-de-fichas/internal/core"
 )
 
-// calculo utilizando reflect
-//func Modificadores(a core.Atributos) map[string]int {
-//	v := reflect.ValueOf(a)
-//	t := reflect.TypeOf(a)
-//
-//	mods := make(map[string]int)
-//
-//	for i := 0; i < v.NumField(); i++ {
-//		tag := t.Field(i).Tag.Get("json")
-//		valor := int(v.Field(i).Int())
-//		mods[tag] = (valor - 10) / 2
-//	}
-//
-//	return mods
-//}
+func CalcularModificador(valorAtributo int8) int8 {
+	modificador := (valorAtributo - 10) / 2
+	return modificador
+}
+
+func PVinicial(modCON *core.ModATR, pvClasse *core.Classe) int8 {
+	pvInicial := pvClasse.PVnvl + modCON.ModCON
+	return pvInicial
+}
+
+func CalcularDefesa(modDES *core.ModATR, bonusDef *core.Equipamento) int8 {
+	Defesa := 10 + modDES.ModDES + bonusDef.BonusDef
+	return Defesa
+}
 
 func AtributosToMap(a core.Atributos) map[string]int8 {
 	return map[string]int8{
@@ -40,8 +39,4 @@ func MapToAtributos(m map[string]int8) core.Atributos {
 		SAB: int8(m["sab"]),
 		CAR: int8(m["car"]),
 	}
-}
-
-func CalcularModificador(valorAtributo int8) int8 {
-	return int8(valorAtributo-10) / 2
 }
