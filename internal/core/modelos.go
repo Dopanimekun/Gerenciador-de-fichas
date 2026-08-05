@@ -36,3 +36,15 @@ type Poder struct {
 	Descricao  string `json:"descricao"`
 	Requisitos string `json:"requisitos"`
 }
+
+type Equipamento struct {
+	ID          string `json:"id"`
+	Nome        string `json:"Nome"`
+	Descricao   string `json:"Descricao"`
+	Requisitos  string `json:"Requisitos"`
+	BonusTeste  int8   `json:"Bonus"`
+	BonusDano   int8   `json:"bonusdano"`
+	BonusDef    int8   `json:"bonusdef"`
+	BonusGerais []int8 `json:"bonusgerais"`
+	Penalidade  int8   `json:"penalidade"`
+}
